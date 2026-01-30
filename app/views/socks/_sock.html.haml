@@ -1,4 +1,4 @@
-%div{id: dom_id(sock)}
+%div{id: dom_id(sock), class: ["sock", matched_class(sock.id)]}
   %p
     %strong Name:
     = sock.name
@@ -23,3 +23,6 @@
     %strong Color:
     = sock.color
 
+  %p
+    %strong Matched:
+    = is_matched?(sock.id)

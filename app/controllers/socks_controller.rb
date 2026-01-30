@@ -6,10 +6,12 @@ class SocksController < ApplicationController
   # GET /socks or /socks.json
   def index
     @socks = Sock.all
+    @matches = Match.all
   end
 
   # GET /socks/1 or /socks/1.json
   def show
+    @matches = Match.all
   end
 
   # GET /socks/new
