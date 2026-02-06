@@ -1,4 +1,4 @@
-class WelcomeController < ApplicationController
+class WelcomeController < ActionController::Base
   layout "custom_page"
 
   before_action :redirect_signed_in_users
