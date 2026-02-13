@@ -1,8 +1,9 @@
-%h1 What sock do you want to match #{@sock.name} with?
+%h1 What sock do you want to propose #{@sock.name} with?
 
+-# Reuses the same form structure as matches/new with a different submit action.
 = form_with(model: @proposal, url: sock_proposals_path(sock_id: @sock.id)) do |f|
   %div
-    = f.label :proposal_id
-    = f.select :proposal_id, socks_options
+    = f.label :match_id
+    = f.select :match_id, socks_options
   %div
-    = f.submit "Propose a Pair"
+    = f.submit "Send Proposal"
