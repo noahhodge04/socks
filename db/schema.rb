@@ -22,11 +22,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_13_055847) do
 
   create_table "proposals", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.integer "sock_1_id_id", null: false
-    t.integer "sock_2_id_id", null: false
+    t.integer "sock_1_id"
+    t.integer "sock_2_id"
     t.datetime "updated_at", null: false
-    t.index ["sock_1_id_id"], name: "index_proposals_on_sock_1_id_id"
-    t.index ["sock_2_id_id"], name: "index_proposals_on_sock_2_id_id"
+    t.index ["sock_1_id"], name: "index_proposals_on_sock_1_id"
+    t.index ["sock_2_id"], name: "index_proposals_on_sock_2_id"
   end
 
   create_table "socks", force: :cascade do |t|
@@ -54,6 +54,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_13_055847) do
 
   add_foreign_key "matches", "socks", column: "sock_1_id"
   add_foreign_key "matches", "socks", column: "sock_2_id"
-  add_foreign_key "proposals", "sock_1_ids"
-  add_foreign_key "proposals", "sock_2_ids"
+  add_foreign_key "proposals", "socks", column: "sock_1_id"
+  add_foreign_key "proposals", "socks", column: "sock_2_id"
 end
