@@ -89,7 +89,6 @@ user.save!
 ].each do |sock_params|
   id = sock_params.delete(:id)
   sock = Sock.new
-  sock.owner = user
   if id
     sock = Sock.find_or_initialize_by(id: id)
   end

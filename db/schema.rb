@@ -38,6 +38,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_13_055847) do
     t.string "height"
     t.string "name"
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_socks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,4 +58,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_13_055847) do
   add_foreign_key "matches", "socks", column: "sock_2_id"
   add_foreign_key "proposals", "socks", column: "sock_1_id"
   add_foreign_key "proposals", "socks", column: "sock_2_id"
+  add_foreign_key "socks", "users"
 end
