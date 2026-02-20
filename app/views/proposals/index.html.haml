@@ -1,0 +1,9 @@
+%p{style: "color: green"}= notice
+
+- content_for :title, "Proposals"
+
+%h1 Proposals
+
+%div{id: "proposals"}
+  - @proposals.each do |proposal|
+    = render proposal

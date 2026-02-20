@@ -2,6 +2,10 @@ class ProposalsController < ApplicationController
   before_action :load_sock
 
   # GET /socks/{:sock_id}/proposals/new
+  def index
+    @proposals = Proposal.all
+  end
+  
   def new
     @proposal = Proposal.new
     @socks = Sock.all
