@@ -8,6 +8,11 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+user = User.find_or_initialize_by({ email: "noahhodge04@gmail.com" })
+user.password = "hunter2"
+user.save
+user.save!
+
 [
   {
     id: 1,
@@ -87,10 +92,13 @@
   if id
     sock = Sock.find_or_initialize_by(id: id)
   end
+  sock.owner = user
   sock.assign_attributes(sock_params)
   sock.save
+  sock.save!
 end
 
-[[1, 4], [3, 7]].each do |match_id_1, match_id_2|
+[ [ 1, 4 ], [ 3, 7 ] ].each do |match_id_1, match_id_2|
   Match.find_or_create_by(sock_1_id: match_id_1, sock_2_id: match_id_2)
+  Match.find_or_create_by!(sock_1_id: match_id_1, sock_2_id: match_id_2)
 end
