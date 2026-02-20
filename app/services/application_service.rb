@@ -1,17 +1,11 @@
-require "ostruct"
-
-class ApplicationService < OpenStruct
+class ApplicationService
   def self.call(**args)
     new(**args).call
   end
 
   def initialize(**kwargs)
-    kwargs.each do
-      
+    kwargs.each do |key, value|
+      instance_variable_set("@#{key}", value)
     end
-  end
-
-  def method_missing(method)
-    self[method] || super
   end
 end

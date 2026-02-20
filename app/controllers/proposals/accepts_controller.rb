@@ -10,6 +10,7 @@ class Proposals::AcceptsController < ApplicationController
     #   # create match record
     #   Match.create(sock_1: @proposal.sock, sock_2: @proposal.proposed_sock)
     # end
+
     redirect_back_or_to(authenticated_root_path)
   end
 end
