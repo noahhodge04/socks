@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title= content_for(:title) || "Socks - Find Your Pair"
+    %title= title
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
     %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}/
     %meta{:content => "Socks", :name => "application-name"}/
@@ -13,9 +13,12 @@
     %link{:href => "/favicon.png", :rel => "icon", :type => "image/png"}/
     %link{:href => "/favicon.png", :rel => "apple-touch-icon"}/
     = stylesheet_link_tag :app
+    - if @custom_stylesheet.present?
+      = stylesheet_link_tag @custom_stylesheet
   %body
-    %div
-      = button_to("Sign Out", destroy_user_session_path, :method => :delete)
-    %p.notice= notice
-    %p.alert= alert
+    - if user_signed_in?
+      %div
+        = button_to("Sign Out", destroy_user_session_path, :method => :delete)
+    %p.notice{ style: "color: green" }= notice
+    %p.alert{ style: "color: red" }= alert
     = yield

@@ -24,3 +24,7 @@ body {
 .sock.matched {
   background-color: green;
 }
+
+button {
+  cursor: pointer;
+}

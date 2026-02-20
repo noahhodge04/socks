@@ -54,7 +54,7 @@ user.save!
     age: 10,
     color: "black",
     description: "Minimalist sock with a deep appreciation for symmetry and order.",
-    gender: "non-binary",
+    gender: "male",
     height: "dress",
     name: "Mono"
   },
@@ -81,7 +81,7 @@ user.save!
     age: 6,
     color: "purple",
     description: "Creative sock who dreams of becoming a scarf one day.",
-    gender: "non-binary",
+    gender: "female",
     height: "knee-high",
     name: "Velour"
   }
@@ -98,4 +98,8 @@ end
 
 [ [ 1, 4 ], [ 3, 7 ] ].each do |match_id_1, match_id_2|
   Match.find_or_create_by!(sock_1_id: match_id_1, sock_2_id: match_id_2)
+end
+
+[ [ 2, 5 ] ].each do |sock_id, proposed_sock_id|
+  Proposal.find_or_create_by!(sock_id: sock_id, proposed_sock_id: proposed_sock_id)
 end
