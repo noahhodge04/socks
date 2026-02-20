@@ -7,11 +7,11 @@ class WelcomeController < ActionController::Base
     @custom_stylesheet = "welcome"
   end
 
-  private
+private
 
-    def redirect_signed_in_users
-      if current_user
-        redirect_to socks_path
-      end
+  def redirect_signed_in_users
+    if user_signed_in?
+      redirect_to socks_path
     end
+  end
 end
