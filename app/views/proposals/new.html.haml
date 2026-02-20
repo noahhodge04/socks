@@ -1,0 +1,8 @@
+%h1 Propose a match for #{@sock.name}
+
+= form_with(model: @proposal, url: sock_proposals_path(sock_id: @sock.id)) do |f|
+  %div
+    = f.label :proposed_sock_id
+    = f.select :proposed_sock_id, socks_options
+  %div
+    = f.submit "Send Proposal"

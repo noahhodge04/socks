@@ -20,6 +20,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_06_192901) do
     t.index ["sock_2_id"], name: "index_matches_on_sock_2_id"
   end
 
+  create_table "proposals", force: :cascade do |t|
+    t.datetime "accepted_at"
+    t.datetime "created_at", null: false
+    t.datetime "declined_at"
+    t.integer "proposed_sock_id", null: false
+    t.integer "sock_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["proposed_sock_id"], name: "index_proposals_on_proposed_sock_id"
+    t.index ["sock_id"], name: "index_proposals_on_sock_id"
+  end
+
   create_table "socks", force: :cascade do |t|
     t.integer "age"
     t.string "color"
@@ -29,6 +40,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_06_192901) do
     t.string "height"
     t.string "name"
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_socks_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at"
+    t.string "reset_password_token"
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,4 +70,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_06_192901) do
 
   add_foreign_key "matches", "socks", column: "sock_1_id"
   add_foreign_key "matches", "socks", column: "sock_2_id"
+  add_foreign_key "proposals", "socks", column: "proposed_sock_id"
+  add_foreign_key "socks", "users"
 end

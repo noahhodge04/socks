@@ -1,0 +1,18 @@
+- content_for :title, "Dashboard"
+
+- if @proposals.any?
+  %div
+    %h4 Proposals
+    - @proposals.each do |proposal|
+      = render proposal
+      = render "proposals/form", proposal: proposal
+
+%h1 Dashboard
+
+%div{id: "socks"}
+  - @socks.each do |sock|
+    = render sock
+    %p
+      = link_to "Show this sock", sock
+
+= link_to "New sock", new_sock_path
